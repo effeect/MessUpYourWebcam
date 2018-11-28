@@ -6,10 +6,7 @@ var binning = true;
 var textvalue = "hello"; //Default Value for the text mode
 var textinput, button;
 
-
-
 function setup() {
-    //P5JS related functions
     pixelDensity(1);
     camera = createCapture(VIDEO); 
     camera.hide();
@@ -50,19 +47,21 @@ function draw() {
     fill(255)
     //Color Mode//
     text("Color Modes",315,545)
-    //These if statements change the text below the color mode//
-    if(modevalue == 0)
-        {
+
+    //Switch statement that changes the UI element being displayed//
+    switch(modevalue)
+    {
+        case 0:
             text("Original",315,570)
-        }
-    if(modevalue == 1)
-        {
+            break;
+        case 1:
             text("8-bit",315,570)
-        }
-    if(modevalue == 2)
-        {
+            break;
+        case 2:
             text("4-bit",315,570)
-        }
+            break;
+    }
+    
     //Box Values//
     text("Size Value : " + boxvalue ,20,540)
     fill(255)
@@ -70,18 +69,17 @@ function draw() {
     boxWidth = boxvalue
     //Shape Values//
     text("Shape : ",20,640)
-    if(shapevalue == 0)
-        {
+    switch(shapevalue){
+        case 0 :
             text("Rectangle",20,680)
-        }
-    if(shapevalue == 1)
-        {
+            break;
+        case 1 :
             text("Circle",20,680)
-        }
-    if(shapevalue == 2)
-        {
-            text("Text Mode",20,680)
-        }
+            break;
+        case 2 :
+             text("Text Mode",20,680)
+             break; 
+    }
     //Text Values//
     text("Text (Select Text Mode from Shape Slider)",250,640)
     fill(255)     
@@ -106,34 +104,34 @@ function draw() {
                                 
                             }
                     }
-                if(modevalue == 0) //Original;
+                    switch(modevalue)
                     {
-                        fill(color(red/total,green/total,blue/total))        
-                    }
-                if(modevalue == 1)//8 bit color
-                    {
-                        fill(replace8bit(color(red/total,green/total,blue/total)))        
-                    }
-                if(modevalue == 2)//4 Bit color
-                    {
-                        fill(replace4bit(color(red/total,green/total,blue/total)))
+                    case 0: //Normal color bitrate
+                            fill(color(red/total,green/total,blue/total))   
+                    break;
+                    case 1: //8 bit color rate
+                            fill(replace8bit(color(red/total,green/total,blue/total)))  
+                    break;
+                    case 2: //4 bit color rate
+                            fill(replace4bit(color(red/total,green/total,blue/total)))
+                    break;
                     }
             }
+            //Switch statement to handle execute the commands//
+            //X and Y refer to the for loop that we are still in//
+            switch(shapevalue){
+            case 0 : //Squares Mode
+                rect(x, y, boxWidth, boxHeight);
+            break;
+            case 1 : //Circles Mode
+                ellipse(x, y, boxWidth, boxHeight);
+            break;
+            case 2 : //Text Mode
+                textSize(boxvalue)
+                text(textvalue,x,y);
+            break;
             
-            //SHAPE CHANGING//
-            if(shapevalue == 0) //SQUARES MODE
-                {
-                    rect(x, y, boxWidth, boxHeight);
-                }
-            if(shapevalue == 1) //CIRCLES MODE
-                {
-                    ellipse(x, y, boxWidth, boxHeight);
-                }
-            if(shapevalue == 2) //TEXT MODE
-                {
-                    textSize(boxvalue)
-                    text(textvalue,x,y);
-                }
+    }
         }
     }
     }
