@@ -2,7 +2,6 @@ var camera;
 var boxWidth = 10;
 var boxHeight = 10;
 var binning = true;
-
 var textvalue = "hello"; //Default Value for the text mode
 var textinput, button;
 
@@ -33,8 +32,6 @@ function setup() {
     button.mousePressed(submit) //Created a function called submit, it can be found at the bottom
 }
 
-
-
 function draw() {       
     background(0);
     camera.loadPixels(); //Updates the camera to keep the motion smooth, although the framerate will drop
@@ -47,7 +44,6 @@ function draw() {
     fill(255)
     //Color Mode//
     text("Color Modes",315,545)
-
     //Switch statement that changes the UI element being displayed//
     switch(modevalue)
     {
@@ -61,7 +57,6 @@ function draw() {
             text("4-bit",315,570)
             break;
     }
-    
     //Box Values//
     text("Size Value : " + boxvalue ,20,540)
     fill(255)
